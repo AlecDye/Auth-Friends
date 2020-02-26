@@ -19,7 +19,9 @@ function App() {
           </ul>
         </nav>
         <Switch>
-          <Login />
+          {/* <PrivateRoute exact path="/protected" component={} /> */}
+          <Route path="/login" component={Login} />
+          <Route component={Login} />
         </Switch>
       </div>
     </Router>
