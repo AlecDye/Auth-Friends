@@ -4,9 +4,8 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 
 const FriendsForm = () => {
     const [newFriend, setNewFriend] = useState({
-        id: 0,
         name: "",
-        age: 1,
+        age: null,
         email: ""
     });
 
@@ -21,9 +20,10 @@ const FriendsForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
         axiosWithAuth()
-            .post("friends")
+            .post("friends", newFriend)
             .then(res => {
-                console.log(res)
+                setNewFriend(res.data)
+                console.log(res.data)
             })
             .catch(err => {
                 console.log("Add newFriend broke", err)
@@ -37,18 +37,21 @@ const FriendsForm = () => {
                 type="text"
                 name="name"
                 value={newFriend.name}
+                onChange={handleChanges}
             />
             <input
                 className="age-input"
                 type="number"
                 name="age"
                 value={newFriend.age}
+                onChange={handleChanges}
             />
             <input
                 className="email-input"
                 type="text"
                 name="email"
                 value={newFriend.email}
+                onChange={handleChanges}
             />
             <button>Add Friend</button>
         </form>
