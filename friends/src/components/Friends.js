@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 
 import { axiosWithAuth } from "../utils/axiosWithAuth"
 import FriendsCard from "./FriendsCard"
+import FriendsForm from "./FriendsForm"
 
 const Friends = () => {
     const [friends, setFriends] = useState([])
@@ -31,17 +32,20 @@ const Friends = () => {
     }, [])
 
     return (
-        <div className="friends-container">
+        <div className="friends-wrapper">
             <h2>Friends Only!</h2>
-            {friends.map(friend => {
-                return (
-                    <FriendsCard
-                        key={friend.id}
-                        name={friend.name}
-                        age={friend.age}
-                        email={friend.email} />
-                )
-            })}
+            <FriendsForm />
+            <div className="friends-container">
+                {friends.map(friend => {
+                    return (
+                        <FriendsCard
+                            key={friend.id}
+                            name={friend.name}
+                            age={friend.age}
+                            email={friend.email} />
+                    )
+                })}
+            </div>
         </div>
     )
 }
